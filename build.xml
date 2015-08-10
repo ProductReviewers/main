@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+   <project name="Product Review" basedir = "." default="info" >
+   <property file="user-dev-env.properties"/>
+
+	<target name="add-git">
+	<exec executable="cmd">
+		<arg value="/c git config --global user.name ${git_user_name}"/>
+	</exec>
+	<exec executable="cmd">
+		<arg value="/c git config --global user.email ${git_user_email}" />
+	</exec>
+		<echo>Adding ${git_user_name} as GIT global user</echo>
+   </target>
+
+	<target name="show-git-global-user">
+	<exec executable="cmd">
+		<arg value="/c git config user.name"/>
+	</exec>
+	</target>
+
+	<target name="clone-main-repo" depends="show-git-global-user,add-git">
+	<exec executable="cmd">
+		<arg value="/c git clone https://github.com/ProductReviewers/main.git ${PRODREVDEV_WRK}" />
+	</exec>
+	</target>
+
+	<target name="clone-tool-repo" depends="show-git-global-user,add-git">
+	<exec executable="cmd">
+		<arg value="/c git clone https://github.com/ProductReviewers/main.git ${PRODREVDEV_WRK}" />
+	</exec>
+	</target>
+
+	
+	<target name="info" description="Product Review Project Description">
+		<echo>ProdRev project is a website which provides prodcut reviews to the customer.</echo>
+		<echo>This is developed by Manan Shah</echo>
+		<echo>The aim behind this is to provide a simple and easily understandable interface</echo>
+	</target>
+
+</project>
